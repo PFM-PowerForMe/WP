@@ -1,0 +1,23 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+	storage_check off
+}
+
+:80 {
+	# 日志
+	log {
+		output stdout
+		format console
+	}
+
+	# 基础配置
+	root * /var/www/wordpress
+	file_server
+
+	php_fastcgi unix//var/run/php-fpm.sock {
+		split .php
+		trusted_proxies private_ranges
+	}
+}
