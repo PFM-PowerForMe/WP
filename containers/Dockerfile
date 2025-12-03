@@ -39,4 +39,6 @@ VOLUME /var/www/wordpress/wp-content
 
 ENTRYPOINT ["/entrypoint.sh"]
 
+CMD ["/init"]
+
 HEALTHCHECK --timeout=10s CMD netstat -tulnp | grep -q ':80\b' && exit 0 || exit 1
