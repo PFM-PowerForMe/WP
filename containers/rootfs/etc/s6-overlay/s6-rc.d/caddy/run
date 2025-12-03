@@ -1,4 +1,0 @@
-#!/command/execlineb -P
-with-contenv
-s6-notifyoncheck
-/usr/sbin/caddy run --config /etc/caddy/Caddyfile --adapter caddyfile

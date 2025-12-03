@@ -33,7 +33,7 @@ MEMORY_LIMIT="${WP_MAX_MEMORY_LIMIT:-512M}"
 CONFIG_FILE="/etc/php84/conf.d/zzz_custom.ini"
 sed -i "s/^memory_limit\s*=.*/memory_limit = $MEMORY_LIMIT/" "$CONFIG_FILE"
 
-# Caddy SSL
+# WP SSL
 DEFAULT_SSL="false"
 WP_SSL="${WP_SSL:-$DEFAULT_SSL}"
 WP_SSL=$(echo "$WP_SSL" | tr '[:upper:]' '[:lower:]')

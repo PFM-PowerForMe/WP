@@ -20,20 +20,19 @@ foreach ($_ENV as $key => $value) {
     }
 }
 
-/** Fix for SSL behind Proxy **/
-$wp_ssl = filter_var(getenv('WP_SSL') ?? 'false', FILTER_VALIDATE_BOOLEAN);
-define('FORCE_SSL_ADMIN', $wp_ssl);
-define('FORCE_SSL_LOGIN', $wp_ssl);
-if ($wp_ssl)
-    {$_SERVER['HTTPS'] = 'on';}
-else
-    {$_SERVER['HTTPS'] = 'off';}
-
-
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+    $_SERVER['HTTPS'] = 'on';
+}
 
 if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
-require_once(ABSPATH . 'wp-content/wp-secrets.php');
+if (file_exists(get_theme_file_path('/func.php'))) {
+    require_once get_theme_file_path('/func.php');
+}
+
+$secret_file = ABSPATH . 'wp-content/wp-secrets.php';
+file_exists($secret_file) && require_once($secret_file);
+
 require_once(ABSPATH . 'wp-settings.php');
