@@ -28,10 +28,6 @@ if (!defined('ABSPATH')) {
     define('ABSPATH', dirname(__FILE__) . '/');
 }
 
-if (file_exists(get_theme_file_path('/func.php'))) {
-    require_once get_theme_file_path('/func.php');
-}
-
 $secret_file = ABSPATH . 'wp-content/wp-secrets.php';
 file_exists($secret_file) && require_once($secret_file);
 
