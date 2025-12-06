@@ -14,10 +14,10 @@ RUN wget https://wordpress.org/wordpress-${WP_VERSION}.tar.gz -O /tmp/wordpress.
   && tar -xzf /tmp/wordpress.tar.gz -C /var/www/ \
   && rm /tmp/wordpress.tar.gz \
   && rm -rf /var/www/wordpress/wp-content \
-  && mkdir -p /var/www/wordpress/wp-content
+  && mkdir -p /var/www/wordpress/wp-content \
   # WP CLI
   wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -O /usr/local/sbin/wp \
-  apk del apk-tools \
+  && apk del apk-tools \
   # 删除包管理器
   && rm -rf /sbin/apk \
   && rm -rf /etc/apk \
