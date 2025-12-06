@@ -130,7 +130,6 @@ jobs:
       - name: '创建并发布多架构 manifest'
         working-directory: ${{ runner.temp }}/digests
         run: |
-          ls .
           docker buildx imagetools create \
             -t ${{ env.GH }}:latest \
            $(printf '${{ env.GH }}@sha256:%s ' *)
